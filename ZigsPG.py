@@ -163,19 +163,18 @@ def create_gui():
     buttons_frame.pack(pady=10)
 
     #Load images to be used on the button
-    # Load the icons
     copy_icon = tk.PhotoImage(file=resource_path("./images/copy.png")).subsample(14, 14)
     cut_icon = tk.PhotoImage(file=resource_path("./images/cut.png")).subsample(14, 14)
     save_icon = tk.PhotoImage(file=resource_path("./images/save.png")).subsample(14, 14)
 
 
-    copy_button = tk.Button(buttons_frame, text="Copy", command=copy_password)
+    copy_button = tk.Button(buttons_frame, text="Copy",image=copy_icon, compound="left", command=copy_password)
     copy_button.pack(side="left", padx=5)
 
-    cut_button = tk.Button(buttons_frame, text="Cut", command=cut_password)
+    cut_button = tk.Button(buttons_frame, text="Cut",image=cut_icon, compound="left", command=cut_password)
     cut_button.pack(side="left", padx=5)
 
-    save_button = tk.Button(buttons_frame, text="Save", command=save_password)
+    save_button = tk.Button(buttons_frame, text="Save",image=save_icon, compound="left", command=save_password)
     save_button.pack(side="left", padx=5)
 
     apply_styles(root)
