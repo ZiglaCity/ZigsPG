@@ -93,7 +93,7 @@ def cut_password():
     copy_password()    
     password_entry.delete(0, tk.END)
 
-    
+
 # define a function the creates the gui of the application
 def create_gui():
     global root, length_entry,keyword_entry, password_entry, var_digits, var_letters, var_punctuation
@@ -142,7 +142,7 @@ def create_gui():
     copy_button = tk.Button(buttons_frame, text="Copy", command=copy_password)
     copy_button.pack(side="left", padx=5)
 
-    cut_button = tk.Button(buttons_frame, text="Cut")
+    cut_button = tk.Button(buttons_frame, text="Cut", command=cut_password)
     cut_button.pack(side="left", padx=5)
 
     save_button = tk.Button(buttons_frame, text="Save")
