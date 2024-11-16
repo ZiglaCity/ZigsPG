@@ -158,7 +158,7 @@ def create_gui():
     cut_button = tk.Button(buttons_frame, text="Cut", command=cut_password)
     cut_button.pack(side="left", padx=5)
 
-    save_button = tk.Button(buttons_frame, text="Save")
+    save_button = tk.Button(buttons_frame, text="Save", command=save_password)
     save_button.pack(side="left", padx=5)
 
     apply_styles(root)
