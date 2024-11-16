@@ -133,7 +133,7 @@ def create_gui():
     buttons_frame = tk.Frame(root)
     buttons_frame.pack(pady=10)
 
-    copy_button = tk.Button(buttons_frame, text="Copy")
+    copy_button = tk.Button(buttons_frame, text="Copy", command=copy_password)
     copy_button.pack(side="left", padx=5)
 
     cut_button = tk.Button(buttons_frame, text="Cut")
