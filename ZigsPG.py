@@ -1,8 +1,57 @@
 import tkinter as tk
 
 # fixed size of application window
-heigth = 500
+heigth = 550
 width = 400
+
+#define a fixed style to be used for all the widgets
+label_style = {
+    "font": ("Arial", 14, "italic"),
+    "bg": "#e6e6e6",
+    "fg": "#2b2b2b",
+    "padx": 8,
+    "pady": 8
+}
+
+button_style = {
+    "font": ("Comic Sans MS", 12, "bold"),
+    "bg": "#BBBBBB",
+    "fg": "#333333",
+    "bd": 3,
+    "relief": "ridge"
+}
+
+entry_style = {
+    "font": ("Times New Roman", 12),
+    "bg": "#ffffff",
+    "fg": "#000000",
+    "bd": 2,
+    "relief": "solid"
+}
+
+frame_style = {
+    "bg": "#e0e0e0",
+    "bd": 2,
+    "relief": "sunken"
+}
+
+
+
+#define a funciton which applies the styles to their respective widgets
+def apply_styles(widget):
+    if isinstance(widget, tk.Button):
+        widget.config(**button_style)
+    elif isinstance(widget, tk.Label):
+        widget.config(**label_style)
+    elif isinstance(widget, tk.Entry):
+        widget.config(**entry_style)
+    elif isinstance(widget, tk.Frame):
+        widget.config(**frame_style)
+
+    # Recursively apply styles to all children
+    for child in widget.winfo_children():
+        apply_styles(child)
+
 
 
 # define a function the creates the gui of the application
@@ -58,7 +107,9 @@ def create_gui():
     save_button = tk.Button(buttons_frame, text="Save")
     save_button.pack(side="left", padx=5)
 
-    root.mainloop()
+    apply_styles(root)
+
+    root.mainloop() 
 
 
 create_gui()
