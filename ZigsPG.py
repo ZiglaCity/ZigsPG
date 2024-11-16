@@ -82,10 +82,15 @@ def generate_password():
     password_entry.insert(0, password)
 
 
+# define a function that copies the password to the clipboard of the user
+def copy_password():
+    root.clipboard_clear()
+    password = password_entry.get()
+    root.clipboard_append(password)
 
 # define a function the creates the gui of the application
 def create_gui():
-    global length_entry,keyword_entry, password_entry, var_digits, var_letters, var_punctuation
+    global root, length_entry,keyword_entry, password_entry, var_digits, var_letters, var_punctuation
     root = tk.Tk()
     root.title("Zigla's Password Generator")
     root.geometry(f"{width}x{heigth}")
