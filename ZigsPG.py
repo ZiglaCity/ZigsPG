@@ -20,11 +20,16 @@ label_style = {
 }
 
 button_style = {
-    "font": ("Comic Sans MS", 12, "bold"),
-    "bg": "#BBBBBB",
-    "fg": "#333333",
-    "bd": 3,
-    "relief": "ridge"
+    "font": ("Helvetic", 12, "bold"),
+    "bg": "#ffffff",
+    "fg": "#000000",
+    "bd": 1,
+    "relief": "solid",
+    "highlightthickness": 0,
+    "activebackground": "#3e8241",
+    "activeforeground": "#000000",
+    "padx":5
+
 }
 
 entry_style = {
@@ -41,6 +46,17 @@ frame_style = {
     "relief": "sunken"
 }
 
+checkbutton_style = {
+    "bg": "#f7f7f7",
+    "highlightthickness": 0,
+    "bd":0,
+    "relief": "flat",
+    "font": ("Arial", 12),
+    "selectcolor": "#f7f7f7",
+    "activebackground":"#f7f7f7",
+    "activeforeground":"#4CAF50"
+}
+
 
 
 #define a funciton which applies the styles to their respective widgets
@@ -53,6 +69,8 @@ def apply_styles(widget):
         widget.config(**entry_style)
     elif isinstance(widget, tk.Frame):
         widget.config(**frame_style)
+    elif isinstance(widget, tk.Checkbutton):
+        widget.config(**checkbutton_style)
 
     # Recursively apply styles to all children
     for child in widget.winfo_children():
@@ -85,7 +103,7 @@ def generate_password():
     password_entry.insert(0, password)
 
 
-# define a function that copies the password to the clipboard of the user
+# define a function that copies and cuts  the password to the clipboard of the user
 def copy_password():
     root.clipboard_clear()
     password = password_entry.get()
@@ -96,6 +114,7 @@ def cut_password():
     copy_password()    
     password_entry.delete(0, tk.END)
 
+# define a function to save the password
 def save_password():
     password = password_entry.get()
     if password:
@@ -131,7 +150,7 @@ def create_gui():
     length_label.pack(pady=10)
 
     length_entry = tk.Entry(content_frame, width=30)
-    length_entry.pack(pady=5)
+    length_entry.pack()
 
     # set initial state for the characters to be included in the password
     var_letters = tk.IntVar(value=1)
@@ -150,14 +169,14 @@ def create_gui():
     keyword_label = tk.Label(content_frame, text="Enter an optional keyword:")
     keyword_label.pack(pady=10)
     keyword_entry = tk.Entry(content_frame, width=30)
-    keyword_entry.pack(pady=5)
+    keyword_entry.pack(pady=10)
 
     generate_button = tk.Button(content_frame, text="Generate Password", command=generate_password)
     generate_button.pack(pady=20)
 
     # Entry to display the generated password
     password_entry = tk.Entry(content_frame, width=35)
-    password_entry.pack(pady=10)
+    password_entry.pack(pady=20)
 
     buttons_frame = tk.Frame(root)
     buttons_frame.pack(pady=10)
@@ -185,11 +204,3 @@ def create_gui():
 create_gui()
 
     
-
-
-
-
-
-
-
-
