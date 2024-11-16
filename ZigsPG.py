@@ -88,6 +88,12 @@ def copy_password():
     password = password_entry.get()
     root.clipboard_append(password)
 
+def cut_password():
+    root.clipboard_clear()
+    copy_password()    
+    password_entry.delete(0, tk.END)
+
+    
 # define a function the creates the gui of the application
 def create_gui():
     global root, length_entry,keyword_entry, password_entry, var_digits, var_letters, var_punctuation
