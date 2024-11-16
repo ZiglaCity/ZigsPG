@@ -174,7 +174,6 @@ def create_gui():
     generate_button = tk.Button(content_frame, text="Generate Password", command=generate_password)
     generate_button.pack(pady=20)
 
-    # Entry to display the generated password
     password_entry = tk.Entry(content_frame, width=35)
     password_entry.pack(pady=20)
 
