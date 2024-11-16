@@ -1,6 +1,7 @@
 import tkinter as tk
 import string
 import random
+from tkinter import filedialog
 
 
 # fixed size of application window
@@ -92,6 +93,18 @@ def cut_password():
     root.clipboard_clear()
     copy_password()    
     password_entry.delete(0, tk.END)
+
+def save_password():
+    password = password_entry.get()
+    if password:
+        file_path = filedialog.asksaveasfilename(defaultextension=".txt", 
+                                                 filetypes=[("Text files", "*.txt"), 
+                                                            ("All files", "*.*")])
+        if file_path:
+            with open(file_path, 'w') as file:
+                file.write(password)
+
+
 
 
 # define a function the creates the gui of the application
