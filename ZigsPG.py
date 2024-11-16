@@ -1,4 +1,7 @@
 import tkinter as tk
+import string
+import random
+
 
 # fixed size of application window
 heigth = 550
@@ -53,9 +56,36 @@ def apply_styles(widget):
         apply_styles(child)
 
 
+# define a command that generates password
+def generate_password():
+    length = int(length_entry.get())
+    
+    character_pool = ""
+    if var_letters.get() == 1:
+        character_pool += string.ascii_letters
+    if var_digits.get() == 1:
+        character_pool += string.digits
+    if var_punctuation.get() == 1:
+        character_pool += string.punctuation
+    
+    # if the user does not select any of the characters to include, use letter only
+    if not character_pool:
+        character_pool = string.ascii_letters
+    
+    password = ''.join(random.choice(character_pool) for _ in range(length))
+    
+    keyword = keyword_entry.get()
+    if keyword:
+        password = password[:len(password)//2] + keyword + password[len(password)//2:]
+    
+    password_entry.delete(0, tk.END)
+    password_entry.insert(0, password)
+
+
 
 # define a function the creates the gui of the application
 def create_gui():
+    global length_entry,keyword_entry, password_entry, var_digits, var_letters, var_punctuation
     root = tk.Tk()
     root.title("Zigla's Password Generator")
     root.geometry(f"{width}x{heigth}")
