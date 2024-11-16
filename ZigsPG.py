@@ -2,6 +2,8 @@ import tkinter as tk
 import string
 import random
 from tkinter import filedialog
+import os
+import sys
 
 
 # fixed size of application window
@@ -105,6 +107,14 @@ def save_password():
                 file.write(password)
 
 
+def resource_path(relative_path):
+    #Get absolute path to resource, works for dev and for PyInstaller 
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 # define a function the creates the gui of the application
@@ -151,6 +161,13 @@ def create_gui():
 
     buttons_frame = tk.Frame(root)
     buttons_frame.pack(pady=10)
+
+    #Load images to be used on the button
+    # Load the icons
+    copy_icon = tk.PhotoImage(file=resource_path("./images/copy.png")).subsample(14, 14)
+    cut_icon = tk.PhotoImage(file=resource_path("./images/cut.png")).subsample(14, 14)
+    save_icon = tk.PhotoImage(file=resource_path("./images/save.png")).subsample(14, 14)
+
 
     copy_button = tk.Button(buttons_frame, text="Copy", command=copy_password)
     copy_button.pack(side="left", padx=5)
